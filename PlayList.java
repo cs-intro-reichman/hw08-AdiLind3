@@ -113,10 +113,12 @@ class PlayList {
             temptracklist[k] = tracks[k]; //make a copy from the original playlist
         }
         temptracklist[i] = track;
+        
         for(int j =i+1; j< maxSize ; j++ )
         {
             temptracklist[j] = tracks[j-1]; // copy the rest of the array 
         }
+        size++; //because we add one song to the playlist
         return true;
     }
      
@@ -125,6 +127,21 @@ class PlayList {
      *  does nothing and returns -1. */
     public void remove(int i) {
         //// replace this comment with your code
+        Boolean flag = size == 0 || i < 0 || i> maxSize ; //if some of them is true than we dont want to act
+        Track[] temptrack = new Track[maxSize];
+        if(!flag) //if everything is good than lets make a party of removing songs
+        {
+            for(int j=0 ; j<i ; j++)
+            {
+                temptrack[j] = tracks[j]; //copy until the song we dont want
+            }
+            for (int k = i+1; k<= maxSize;k++)
+            {
+                temptrack[k] = tracks[k];
+            }
+            size--;
+        }
+
     }
 
     /** Removes the first track that has the given title from this list.
