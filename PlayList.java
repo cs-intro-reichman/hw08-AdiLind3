@@ -62,18 +62,36 @@ class PlayList {
     /** Removes the last track from this list. If the list is empty, does nothing. */
      public void removeLast() {
         //// replace this comment with your code
+        if(size != 0)
+        {
+            size--;
+        }
+
     }
     
     /** Returns the total duration (in seconds) of all the tracks in this list.*/
     public int totalDuration() {
         //// replace the following statement with your code
-        return 0;
+        int totalDuration = 0;
+        for(int i = 0 ; i <= size; i++)
+        {
+            totalDuration += tracks[size].getDuration(); //get the duration of each song and add to the sum
+        }
+        return totalDuration;
     }
 
     /** Returns the index of the track with the given title in this list.
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
         //// replace the following statement with your code
+        //Boolean flag = false;
+        for(int i =0; i<=size ; i++)
+        {
+            if(tracks[size].getTitle() == title)
+            {
+                return i;
+            }
+        }
         return -1;
     }
 
@@ -85,7 +103,21 @@ class PlayList {
      *  returns true. */
     public boolean add(int i, Track track) {
         //// replace the following statement with your code
-        return false;
+        if(size == maxSize)
+        {
+            return false;
+        }
+        Track[] temptracklist = new Track[maxSize];
+        for(int k=0; k<i; k++)
+        {
+            temptracklist[k] = tracks[k]; //make a copy from the original playlist
+        }
+        temptracklist[i] = track;
+        for(int j =i+1; j< maxSize ; j++ )
+        {
+            temptracklist[j] = tracks[j-1]; // copy the rest of the array 
+        }
+        return true;
     }
      
     /** Removes the track in the given index from this list.
