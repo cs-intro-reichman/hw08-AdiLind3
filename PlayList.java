@@ -36,6 +36,12 @@ class PlayList {
      *  Otherwise, appends the track and returns true. */
     public boolean add(Track track) {
         //// replace the following statement with your code
+        if(size+1 == maxSize)
+        {
+            return false;
+        }
+        tracks[size+1] = track;
+        size++;
         return true;
     }
 
@@ -43,7 +49,14 @@ class PlayList {
     //// For an efficient implementation, use StringBuilder.
     public String toString() {
         //// replace the following statement with your code
-        return "";
+        StringBuilder temptrack = new StringBuilder();
+        for(int i=0; i<= size; i++)
+        {
+            
+            temptrack = temptrack.append(tracks[i].getTitle()).append(tracks[i].getArtist()).append(tracks[i].getDuration()); //make a string that contain all the details we want to print
+            temptrack.append("\n"); //make a new line for the next song
+        }
+        return temptrack.toString();
     }
 
     /** Removes the last track from this list. If the list is empty, does nothing. */
