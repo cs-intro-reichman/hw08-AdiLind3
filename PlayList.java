@@ -61,7 +61,7 @@ class PlayList {
     /** Removes the last track from this list. If the list is empty, does nothing. */
      public void removeLast() {
         //// replace this comment with your code
-        if(size != 0)
+        if(size > 0)
         {   
             tracks[size-1] = null;
             size--;
@@ -75,7 +75,11 @@ class PlayList {
         int totalDuration = 0;
         for(int i = 0 ; i < size; i++)
         {
-            totalDuration += tracks[i].getDuration(); //get the duration of each song and add to the sum
+            if(tracks[i] != null)
+            {
+                totalDuration += tracks[i].getDuration(); //get the duration of each song and add to the sum
+            }
+            
         }
         return totalDuration;
     }
@@ -87,7 +91,7 @@ class PlayList {
         //Boolean flag = false;
         for(int i = 0; i < size ; i++)
         {
-            if(tracks[i].getTitle() == title)
+            if((tracks[i] != null) && (tracks[i].getTitle() == title))
             {
                 return i;
             }
