@@ -85,7 +85,7 @@ class PlayList {
     public int indexOf(String title) {
         //// replace the following statement with your code
         //Boolean flag = false;
-        for(int i =0; i<=size ; i++)
+        for(int i = 0; i < size ; i++)
         {
             if(tracks[i].getTitle() == title)
             {
