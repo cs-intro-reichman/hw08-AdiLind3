@@ -149,6 +149,23 @@ class PlayList {
      *  is negative or too big for this list, does nothing. */
     public void remove(String title) {
         //// replace this comment with your code
+        int indexof = -1;
+        if( size > 0)
+        {
+            for(int i=0; i<= maxSize; i++)
+        {
+            if(tracks[i].getTitle() == title)
+            {
+                indexof = i;
+                break;
+            }
+        }
+        if(indexof != -1)
+        {
+            remove(indexof); //after we find the indexof we can use the function above in order to remove 
+        }
+        }
+        
     }
 
     /** Removes the first track from this list. If the list is empty, does nothing. */
