@@ -40,7 +40,7 @@ class PlayList {
         {
             return false;
         }
-        tracks[size+1] = track;
+        tracks[size] = track;
         size++;
         return true;
     }
@@ -52,7 +52,8 @@ class PlayList {
         StringBuilder temptrack = new StringBuilder();
         for(int i=0; i< size; i++)
         {
-            temptrack = temptrack.append(tracks[i].getTitle()).append(tracks[i].getArtist()).append(tracks[i].getDuration()); //make a string that contain all the details we want to print
+            //temptrack = temptrack.append(tracks[i].getTitle()).append(tracks[i].getArtist()).append(tracks[i].getDuration()); //make a string that contain all the details we want to print
+            temptrack.append(tracks[i].toString());
             temptrack.append("\n"); //make a new line for the next song
         }
         return temptrack.toString();
@@ -91,9 +92,13 @@ class PlayList {
         //Boolean flag = false;
         for(int i = 0; i < size ; i++)
         {
-            if((tracks[i] != null) && (tracks[i].getTitle() == title))
+            if((tracks[i].getTitle().equals(title)))
             {
                 return i;
+            }
+            if(tracks[i] == null)
+            {
+                return -1;
             }
         }
         return -1;
@@ -112,9 +117,14 @@ class PlayList {
             return false;
         }
         Track[] temptracklist = new Track[maxSize];
+        if ( i == size) //if they are equal so its more simple and we finish
+        {
+            tracks[i] = track;
+            return true;
+        }
         for(int k=0; k<i; k++)
         {
-            temptracklist[k] = tracks[k]; //make a copy from the original playlist
+            temptracklist[k] = tracks[k]; //make a copy from the original playlist until the pointer is i-1
         }
         temptracklist[i] = track;
         
@@ -131,7 +141,7 @@ class PlayList {
      *  does nothing and returns -1. */
     public void remove(int i) {
         //// replace this comment with your code
-        Boolean flag = size == 0 || i < 0 || i > maxSize ; //if some of them is true than we dont want to act
+        Boolean flag = size == 0|| size == -1 || i < 0 || i > size ; //if some of them is true than we dont want to act
         Track[] temptrack = new Track[maxSize];
         if(!flag) //if everything is good than lets make a party of removing songs
         {
@@ -139,9 +149,9 @@ class PlayList {
             {
                 temptrack[j] = tracks[j]; //copy until the song we dont want
             }
-            for (int k = i+1; k< maxSize;k++)
+            for (int k = i; k< maxSize;k++)
             {
-                temptrack[k] = tracks[k];
+                temptrack[k] = tracks[k+1];
             }
             size--;
         }
@@ -154,11 +164,11 @@ class PlayList {
     public void remove(String title) {
         //// replace this comment with your code
         int indexof = -1;
-        if( size > 0)
+        if(size > 0)
         {
             for(int i=0; i<= maxSize; i++)
         {
-            if(tracks[i].getTitle() == title)
+            if(tracks[i].getTitle().equals(title))
             {
                 indexof = i;
                 break;
@@ -175,6 +185,7 @@ class PlayList {
     /** Removes the first track from this list. If the list is empty, does nothing. */
     public void removeFirst() {
         //// replace this comment with your code
+        /* 
         Track[] withoutFirstTrack = new Track[maxSize];
         if(size !=0)
         {
@@ -183,7 +194,12 @@ class PlayList {
                 withoutFirstTrack[i-1] = tracks[i];
             }
             tracks = withoutFirstTrack;
+        }*/
+        if(size != 0) //not empty
+        {
+            remove(0);
         }
+
     }
     
     /** Adds all the tracks in the other list to the end of this list. 
