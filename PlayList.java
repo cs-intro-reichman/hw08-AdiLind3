@@ -228,10 +228,11 @@ class PlayList {
                 if(other.tracks[i - size] != null)
                 {
                     tracks[i] = other.tracks[i - size];
+                    size++;
                 }
                 
             }
-            size++;
+            
         }
     }
 
