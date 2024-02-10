@@ -149,7 +149,7 @@ class PlayList {
             {
                 temptrack[j] = tracks[j]; //copy until the song we dont want
             }
-            for (int k = i; k< maxSize;k++)
+            for (int k = i; k+1 < maxSize;k++)
             {
                 temptrack[k] = tracks[k+1];
             }
@@ -207,7 +207,7 @@ class PlayList {
     //// An elegant and terribly inefficient implementation.
      public void add(PlayList other) {
         //// replace this comment with your code
-        if(!(this.getSize() + other.getSize() > maxSize))
+        if(!(this.getSize() + other.getSize() <= maxSize))
         {
             for(int i = size; i<= maxSize ; i++)
             {
