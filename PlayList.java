@@ -150,11 +150,11 @@ class PlayList {
      *  does nothing and returns -1. */
     public void remove(int i) {
         //// replace this comment with your code
-        Boolean flag = size == 0|| size == -1 || i < 0 || i > size ; //if some of them is true than we dont want to act
-        Track[] temptrack = new Track[maxSize];
+        Boolean flag = ((size == 0)|| size == -1 || i < 0 || (i > size)) ; //if some of them is true than we dont want to act
+        //Track[] temptrack = new Track[maxSize];
         if(!flag) //if everything is good than lets make a party of removing songs
         {
-            for(int j=0 ; j<i ; j++)
+           /*  for(int j=0 ; j<i ; j++)
             {
                 temptrack[j] = tracks[j]; //copy until the song we dont want
             }
@@ -162,6 +162,11 @@ class PlayList {
             {
                 temptrack[k] = tracks[k+1];
             }
+            */
+            for (int j = i; j < size - 1; j++) {
+                tracks[j] = tracks[j + 1]; // Shift tracks to fill the gap
+            }
+            tracks[size - 1] = null; // Set the last element to null
             size--;
         }
 
