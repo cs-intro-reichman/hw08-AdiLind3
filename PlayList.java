@@ -278,7 +278,7 @@ class PlayList {
         // Uses the selection sort algorithm,  
         // calling the minIndex method in each iteration.
         //// replace this statement with your code
-        for(int i=0; i < maxSize ; i++)
+        for(int i=0; i <= size ; i++)
         {   
             if(tracks[i] != null)
             {
