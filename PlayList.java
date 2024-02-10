@@ -223,10 +223,15 @@ class PlayList {
         //// replace this comment with your code
         if(!(this.getSize() + other.getSize() <= maxSize))
         {
-            for(int i = size; i<= maxSize ; i++)
+            for(int i = this.getSize(); i<= maxSize ; i++) //start for the end of the first playlist
             {
-                add(other);
+                if(other.tracks[i - size] != null)
+                {
+                    tracks[i] = other.tracks[i - size];
+                }
+                
             }
+            size++;
         }
     }
 
@@ -238,7 +243,25 @@ class PlayList {
      */
     private int minIndex(int start) {
         //// replace the following statement with your code
-        return 0;
+        int min = tracks[start].getDuration();
+        int minindex = start;
+        if((start < 0) || (start > size-1))
+        {
+            return -1;
+        }
+        for(int i=minindex; i< maxSize; i++)
+        {
+            if(tracks[i] != null)
+            {
+                if(tracks[i].getDuration() < min)
+                {
+                    minindex = i;
+                    min = tracks[i].getDuration();
+                }
+            }
+        }
+        
+        return minindex;
     }
 
     /** Returns the title of the shortest track in this list. 
@@ -255,5 +278,9 @@ class PlayList {
         // Uses the selection sort algorithm,  
         // calling the minIndex method in each iteration.
         //// replace this statement with your code
+        for(int i=0; i< this.getSize() ; i++)
+        {
+            tracks[i] = tracks[minIndex(i)];
+        }
     }
 }
