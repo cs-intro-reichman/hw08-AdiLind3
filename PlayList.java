@@ -279,13 +279,30 @@ class PlayList {
         // Uses the selection sort algorithm,  
         // calling the minIndex method in each iteration.
         //// replace this statement with your code
-        for(int i=0; i <= size ; i++)
+        /*for(int i=0; i < maxSize ; i++)
         {   
             if(tracks[i] != null)
-            {
+            {   
+                Track temp = new Track(tracks[i].getTitle(), tracks[i].getArtist(),tracks[i].getDuration());
                 tracks[i] = tracks[minIndex(i)];
+                tracks[minIndex(i)] = temp;
             }
             
-        }
+        }*/
+        
+         
+        for (int i = 0; i < size - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < size; j++) {
+                if (tracks[j].getDuration() < tracks[minIndex].getDuration()) {
+                    minIndex = j;
+                }
+            }
+            // Swap tracks[i] and tracks[minIndex]
+            Track temp = tracks[i];
+            tracks[i] = tracks[minIndex];
+            tracks[minIndex] = temp;
     }
+    
+}
 }
