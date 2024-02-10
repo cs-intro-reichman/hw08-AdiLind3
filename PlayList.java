@@ -221,14 +221,14 @@ class PlayList {
     //// An elegant and terribly inefficient implementation.
      public void add(PlayList other) {
         //// replace this comment with your code
-        if(!(this.getSize() + other.getSize() <= maxSize))
+        if((this.getSize() + other.getSize() <= maxSize))
         {
-            for(int i = this.getSize(); i<= maxSize ; i++) //start for the end of the first playlist
+            for(int i = 0; i< (other.getSize()) ; i++) //start for the end of the first playlist
             {
-                if(other.tracks[i - size] != null)
+                if(( size < maxSize))
                 {
-                    tracks[i] = other.tracks[i - size];
-                    size++;
+                    this.add(other.getTrack(i));
+                    
                 }
                 
             }
