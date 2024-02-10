@@ -149,7 +149,7 @@ class PlayList {
             {
                 temptrack[j] = tracks[j]; //copy until the song we dont want
             }
-            for (int k = i; k+1 < maxSize;k++)
+            for (int k = i; k < maxSize;k++)
             {
                 temptrack[k] = tracks[k+1];
             }
