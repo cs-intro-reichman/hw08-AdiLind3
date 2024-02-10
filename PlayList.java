@@ -278,9 +278,13 @@ class PlayList {
         // Uses the selection sort algorithm,  
         // calling the minIndex method in each iteration.
         //// replace this statement with your code
-        for(int i=0; i< this.getSize() ; i++)
-        {
-            tracks[i] = tracks[minIndex(i)];
+        for(int i=0; i < maxSize ; i++)
+        {   
+            if(tracks[i] != null)
+            {
+                tracks[i] = tracks[minIndex(i)];
+            }
+            
         }
     }
 }
