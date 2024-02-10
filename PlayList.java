@@ -50,12 +50,20 @@ class PlayList {
     public String toString() {
         //// replace the following statement with your code
         StringBuilder temptrack = new StringBuilder();
+        temptrack.append("\n");
         for(int i=0; i< size; i++)
         {
             //temptrack = temptrack.append(tracks[i].getTitle()).append(tracks[i].getArtist()).append(tracks[i].getDuration()); //make a string that contain all the details we want to print
-            temptrack.append(tracks[i].toString());
+            if(tracks[i] != null)
+            {
+                temptrack.append(tracks[i].toString());
+            }
+            
+            if( i+1 < size){
             temptrack.append("\n"); //make a new line for the next song
+            }
         }
+
         return temptrack.toString();
     }
 
@@ -92,7 +100,7 @@ class PlayList {
         //Boolean flag = false;
         for(int i = 0; i < size ; i++)
         {
-            if((tracks[i].getTitle().equals(title)))
+            if(((tracks[i] != null) && (tracks[i].getTitle().equals(title))))
             {
                 return i;
             }
@@ -132,6 +140,7 @@ class PlayList {
         {
             temptracklist[j] = tracks[j-1]; // copy the rest of the array 
         }
+        tracks = temptracklist;
         size++; //because we add one song to the playlist
         return true;
     }
