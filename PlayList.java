@@ -125,11 +125,12 @@ class PlayList {
             return false;
         }
         Track[] temptracklist = new Track[maxSize];
-        if ( i == size) //if they are equal so its more simple and we finish
+        if ( i+1 == size) //if they are equal so its more simple and we finish
         {
             tracks[i] = track;
             return true;
         }
+        
         for(int k=0; k<i; k++)
         {
             temptracklist[k] = tracks[k]; //make a copy from the original playlist until the pointer is i-1
@@ -140,6 +141,13 @@ class PlayList {
         {
             temptracklist[j] = tracks[j-1]; // copy the rest of the array 
         }
+        /* 
+        for(int k=size; k> i; k--)
+        {
+            tracks[k] = tracks[k-1]; //move all the songs one place in order to make space for the new track
+        }
+        tracks[i] = track;
+        */
         tracks = temptracklist;
         size++; //because we add one song to the playlist
         return true;
@@ -279,18 +287,19 @@ class PlayList {
         // Uses the selection sort algorithm,  
         // calling the minIndex method in each iteration.
         //// replace this statement with your code
-        /*for(int i=0; i < maxSize ; i++)
+        for(int i=0; i < size ; i++)
         {   
             if(tracks[i] != null)
             {   
-                Track temp = new Track(tracks[i].getTitle(), tracks[i].getArtist(),tracks[i].getDuration());
-                tracks[i] = tracks[minIndex(i)];
-                tracks[minIndex(i)] = temp;
+                Track temp = tracks[minIndex(i)];
+                tracks[minIndex(i)] = tracks[i];
+                tracks[i] = temp;
+            
             }
             
-        }*/
+        }
         
-         
+        /* 
         for (int i = 0; i < size - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < size; j++) {
@@ -302,7 +311,7 @@ class PlayList {
             Track temp = tracks[i];
             tracks[i] = tracks[minIndex];
             tracks[minIndex] = temp;
-    }
+    } */
     
 }
 }
